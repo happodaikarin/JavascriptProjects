@@ -1,0 +1,10 @@
+localStorage.getItem();
+localStorage.setItem();
+localStorage.removeItem();
+
+
+JSON.parse();//pass json string to js object
+JSON.stringify(); // pass to js object to json string
+
+
+
