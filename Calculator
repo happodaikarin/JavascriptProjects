@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+
+      .calculator {
+        display: grid;
+        grid-template-columns: repeat(4, 80px);
+        grid-gap: 10px;
+      }
+
+      .screen {
+        grid-column: span 4;
+        height: 50px;
+        text-align: right;
+        font-size: 24px;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 20px;
+        font-size: 18px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      button.clear {
+        background-color: #ff5c5c;
+      }
+
+      button.equal {
+        background-color: #28a745;
+      }
+
+      button:active {
+        transform: scale(0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <input type="text" id="screen" class="screen" readonly />
+
+      <button onclick="updateCalculation('7')">7</button>
+      <button onclick="updateCalculation('8')">8</button>
+      <button onclick="updateCalculation('9')">9</button>
+      <button onclick="updateCalculation('+')">+</button>
+
+      <button onclick="updateCalculation('4')">4</button>
+      <button onclick="updateCalculation('5')">5</button>
+      <button onclick="updateCalculation('6')">6</button>
+      <button onclick="updateCalculation('-')">-</button>
+
+      <button onclick="updateCalculation('1')">1</button>
+      <button onclick="updateCalculation('2')">2</button>
+      <button onclick="updateCalculation('3')">3</button>
+      <button onclick="updateCalculation('*')">*</button>
+
+      <button onclick="updateCalculation('0')">0</button>
+      <button onclick="updateCalculation('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+      <button onclick="updateCalculation('/')">/</button>
+
+      <button class="clear" style="grid-column: span 4;" onclick="clearScreen()">Clear</button>
+    </div>
+
+    <script>
+      let calculation = '';
+
+      // Función para actualizar la pantalla con el valor ingresado
+      function updateCalculation(value) {
+        calculation += value;
+        document.getElementById('screen').value = calculation;
+      }
+
+      // Función para realizar el cálculo
+      function calculate() {
+        try {
+          calculation = eval(calculation); // eval para ejecutar la operación
+          document.getElementById('screen').value = calculation;
+        } catch (error) {
+          document.getElementById('screen').value = 'Error';
+          calculation = '';
+        }
+      }
+
+      // Función para limpiar la pantalla
+      function clearScreen() {
+        calculation = '';
+        document.getElementById('screen').value = '';
+      }
+    </script>
+  </body>
+</html>
+

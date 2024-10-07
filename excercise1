@@ -1,0 +1,11 @@
+alert('good morning');
+alert('Ramses hidalgo');
+10+5;
+20-5;
+document.body.innerHTML = 'Good morning';
+document.body.innerHTML = 'Ramses Hidalgo';
+
+1+8+20
+100+200-50-20;
+document.body.innerHTML = '';
+

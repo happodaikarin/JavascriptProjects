@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      h1 {
+        margin-top: 50px;
+      }
+      .choices {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+      }
+      .choice {
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: transform 0.3s ease;
+        font-size: 100px;
+      }
+      .choice:hover {
+        transform: scale(1.1);
+        border: 2px solid #333;
+      }
+      .result {
+        margin-top: 40px;
+        font-size: 20px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Rock Paper Scissors</h1>
+    <p>Choose your move:</p>
+
+    <!-- Botones con iconos -->
+    <div class="choices">
+      <div class="choice" onclick="playGame('rock')">
+        <i class="fas fa-hand-rock"></i>
+      </div>
+      <div class="choice" onclick="playGame('paper')">
+        <i class="fas fa-hand-paper"></i>
+      </div>
+      <div class="choice" onclick="playGame('scissors')">
+        <i class="fas fa-hand-scissors"></i>
+      </div>
+    </div>
+
+    <div class="result" id="result"></div>
+
+    <script>
+      function playGame(playerMove) {
+        const randomNumber = Math.random();
+        let computerMove = "";
+
+        if (randomNumber < 1 / 3) {
+          computerMove = "rock";
+        } else if (randomNumber < 2 / 3) {
+          computerMove = "paper";
+        } else {
+          computerMove = "scissors";
+        }
+
+        let result = "";
+        if (playerMove === computerMove) {
+          result = "It's a tie!";
+        } else if (
+          (playerMove === "rock" && computerMove === "scissors") ||
+          (playerMove === "paper" && computerMove === "rock") ||
+          (playerMove === "scissors" && computerMove === "paper")
+        ) {
+          result = "You win!";
+        } else {
+          result = "You lose!";
+        }
+
+        document.getElementById("result").innerHTML = `
+          You picked <strong>${playerMove}</strong>, 
+          Computer picked <strong>${computerMove}</strong>. 
+          <br> ${result}
+        `;
+      }
+    </script>
+  </body>
+</html>
+

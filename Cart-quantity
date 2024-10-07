@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Quantity</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+
+      .cart-container {
+        text-align: center;
+      }
+
+      .quantity-display {
+        font-size: 2rem;
+        margin: 20px 0;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      .fa-cart-plus,
+      .fa-cart-arrow-down {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cart-container">
+      <h1>Shopping Cart</h1>
+      <div class="quantity-display">
+        <i class="fas fa-shopping-cart"></i>
+        Cart Quantity: <span id="cart-quantity">0</span>
+      </div>
+
+      <!-- Botones para agregar cantidades -->
+      <button onclick="addToCart(1)"><i class="fas fa-cart-plus"></i> Add 1</button>
+      <button onclick="addToCart(2)"><i class="fas fa-cart-plus"></i> Add 2</button>
+      <button onclick="addToCart(3)"><i class="fas fa-cart-plus"></i> Add 3</button>
+      <button onclick="addToCart(4)"><i class="fas fa-cart-plus"></i> Add 4</button>
+      <button onclick="addToCart(5)"><i class="fas fa-cart-plus"></i> Add 5</button>
+
+      <!-- Botones para remover cantidades -->
+      <button onclick="removeFromCart(1)"><i class="fas fa-cart-arrow-down"></i> Remove 1</button>
+      <button onclick="removeFromCart(2)"><i class="fas fa-cart-arrow-down"></i> Remove 2</button>
+      <button onclick="removeFromCart(3)"><i class="fas fa-cart-arrow-down"></i> Remove 3</button>
+
+      <!-- Botón para resetear el carrito -->
+      <button onclick="resetCart()"><i class="fas fa-undo-alt"></i> Reset Cart</button>
+    </div>
+
+    <script>
+      let cartQuantity = 0;
+      const cartQuantityDisplay = document.getElementById('cart-quantity');
+
+      // Función para agregar al carrito
+      function addToCart(quantity) {
+        if (cartQuantity + quantity > 10) {
+          alert('The cart is full');
+        } else {
+          cartQuantity += quantity;
+          updateCartDisplay();
+        }
+      }
+
+      // Función para remover del carrito
+      function removeFromCart(quantity) {
+        if (cartQuantity - quantity < 0) {
+          alert('Not enough items in the cart');
+        } else {
+          cartQuantity -= quantity;
+          updateCartDisplay();
+        }
+      }
+
+      // Función para resetear el carrito
+      function resetCart() {
+        cartQuantity = 0;
+        updateCartDisplay();
+        alert('Cart was reset.');
+      }
+
+      // Actualiza la visualización de la cantidad en el carrito
+      function updateCartDisplay() {
+        cartQuantityDisplay.textContent = cartQuantity;
+      }
+    </script>
+  </body>
+</html>
+
